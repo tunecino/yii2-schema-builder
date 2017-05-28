@@ -1,0 +1,166 @@
+/*.modal-body {
+	color: #bdc3c7;
+	background-color: #ecf0f1;
+}
+*/
+
+body {background-color: #eff0f2}
+
+hr {
+	margin-top: 40px;
+	margin-bottom: 40px;
+	border-top: 2px dashed #bdc3c7;
+}
+
+.mt20 {margin-top: 20px}
+.mb20 {margin-bottom: 20px}
+
+.text-silent {
+  color: #bdc3c7;
+  font-weight: 300;
+}
+
+.terminal {
+  margin-top: 20px;
+  height: 400px;
+  padding: 20px;
+  overflow-y: auto;
+  font-size: 13px;
+  text-transform: none;
+}
+
+.terminal .cmd {
+  font-weight: bold;
+  margin: 30px 0 15px 0;
+  color: #ffeea9;
+}
+.terminal .success {
+    font-weight: bold;
+    margin: 30px 0 15px 0;
+    color: #1ABC9C;
+    font-size: 30px;
+}
+.terminal .error {
+    font-weight: bold;
+    margin: 30px 0 15px 0;
+    color: #ff6d5e;
+    font-size: 20px;
+}
+.terminal .response {padding-left: 20px}
+
+.table > thead > tr > th {border-bottom: 1px solid #ddd}
+
+.pagination {background: #bdc3c7}
+
+.modal-body {background-color: #eff0f2}
+
+.schema-item {margin-bottom: 20px}
+
+.entity-item {padding: 15px}
+
+.pull-right .pagination {margin-top: 0px}
+
+.search-container {
+	position: relative;
+	margin-right: 12px;
+}
+.entity-search {
+	position: absolute;
+	top: -1px;
+	right: 0;
+	width: 355px;
+	z-index: 1;
+}
+
+.attribute-form, .relationship-form {
+	display: inline-block;
+	text-align: center;
+}
+
+.breadcrumb .table-hover > tbody > tr:hover {
+    background-color: #eff0f2;
+}
+
+a {cursor: pointer}
+
+th {font-weight: 500}
+
+/* 
+ * hide length, precision and scale fields by default in atrribute forms 
+ * until a 'type' is selected within the dropdownlist
+ */
+[class^="form-group field-length-"], 
+[class^="form-group field-precision-"], 
+[class^="form-group field-scale-"] {
+  display: none;
+}
+
+/*removes modal fade animation*/
+.modal.fade {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    -o-transition: none;
+    transition: none;
+}
+
+.field-relationship-reversed {min-height: 70px}
+
+.form-control[readonly] {
+    background-color: #eff0f2;
+    color: #3A4971;
+}
+
+.palette-custom-asphalt {
+    background-color: #6f849a;
+}
+
+.modal-backdrop {
+    background-color: #ffffff;
+}
+
+
+/* .modal-fullscreen */
+/* source:http://www.minimit.com/articles/solutions-tutorials/bootstrap-3-transparent-and-fullscreen-modals */
+
+.modal-fullscreen {
+  background: transparent;
+}
+.modal-fullscreen .modal-content {
+  background: transparent;
+  border: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.modal-fullscreen .modal-body {background: transparent;}
+
+.modal-backdrop.modal-backdrop-fullscreen {
+  background: #eff0f2;
+}
+.modal-backdrop.modal-backdrop-fullscreen.in {
+  opacity: 1;
+  filter: alpha(opacity=1);
+}
+
+.modal-fullscreen .modal-dialog {
+  margin: 0;
+  margin-right: auto;
+  margin-left: auto;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .modal-fullscreen .modal-dialog {
+    width: 750px;
+  }
+}
+@media (min-width: 992px) {
+  .modal-fullscreen .modal-dialog {
+    width: 970px;
+  }
+}
+@media (min-width: 1200px) {
+  .modal-fullscreen .modal-dialog {
+     width: 1170px;
+  }
+}

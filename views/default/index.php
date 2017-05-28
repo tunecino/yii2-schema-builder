@@ -1,12 +1,40 @@
-<div class="builder-default-index">
-    <h1><?= $this->context->action->uniqueId ?></h1>
-    <p>
-        This is the view content for action "<?= $this->context->action->id ?>".
-        The action belongs to the controller "<?= get_class($this->context) ?>"
-        in the "<?= $this->context->module->id ?>" module.
-    </p>
-    <p>
-        You may customize this page by editing the following file:<br>
-        <code><?= __FILE__ ?></code>
-    </p>
+<?php
+
+use yii\helpers\Html;
+use yii\widgets\ListView;
+use yii\widgets\Pjax;
+
+/* @var $this yii\web\View */
+/* @var $schemaProvider yii\data\ActiveDataProvider */
+
+$this->title = 'Schemas';
+$this->params['breadcrumbs'][] = $this->title;
+?>
+
+<div class="schema-index">
+    
+<div class="col-xs-12">
+    <h2 style="display:inline"><?= Html::encode($this->title) ?></h2>
+    <?php Pjax::begin(['id' => 'schema-form', 'options' => ['tag' => 'span']]); ?>
+        <?= $this->render('_form', ['schema' => $schema]) ?>
+    <?php Pjax::end(); ?>
+
 </div>
+
+
+    <?php Pjax::begin(['id' => 'schema-list']); ?> 
+        <?= ListView::widget([
+            'dataProvider' => $schemaProvider,
+            'layout' => 
+                '<div class="col-xs-12">
+                    <div class="pull-left mb20">{summary}</div>
+                    <div class="pull-right mt20">{pager}</div>
+                </div>
+                {items}',
+            'itemOptions' => ['class' => 'schema-item col-xs-6 col-sm-4 col-md-3'],
+            'itemView' => '_item',
+        ]) ?>
+    <?php Pjax::end(); ?>
+
+</div>
+
