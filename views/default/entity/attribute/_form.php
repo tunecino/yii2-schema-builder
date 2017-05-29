@@ -86,9 +86,9 @@ $rid = uniqid();
 
      <div class="col-sm-6" style="padding: 0 25px;">
 
-        <?= $form->field($model, 'length')->textInput(['id' => 'length-' . $rid]) ?>
-        <?= $form->field($model, 'precision')->textInput(['id' => 'precision-' . $rid]) ?>
-        <?= $form->field($model, 'scale')->textInput(['id' => 'scale-' . $rid]) ?>
+        <?= $form->field($model, 'length', $model->lengthRequired() ? [] : ['options' => ['style' => 'display:none;']])->textInput(['id' => 'length-' . $rid]) ?>
+        <?= $form->field($model, 'precision', $model->precisionRequired() ? [] : ['options' => ['style' => 'display:none;']])->textInput(['id' => 'precision-' . $rid]) ?>
+        <?= $form->field($model, 'scale', $model->scaleRequired() ? [] : ['options' => ['style' => 'display:none;']])->textInput(['id' => 'scale-' . $rid]) ?>
         <?= $form->field($model, 'default')->textInput(['maxlength' => true]) ?>
     </div>
 

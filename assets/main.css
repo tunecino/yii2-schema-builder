@@ -85,16 +85,6 @@ a {cursor: pointer}
 
 th {font-weight: 500}
 
-/* 
- * hide length, precision and scale fields by default in atrribute forms 
- * until a 'type' is selected within the dropdownlist
- */
-[class^="form-group field-length-"], 
-[class^="form-group field-precision-"], 
-[class^="form-group field-scale-"] {
-  display: none;
-}
-
 /*removes modal fade animation*/
 .modal.fade {
     -webkit-transition: none;
