@@ -61,7 +61,7 @@ class Generator extends \tunecino\builder\Generator
 
     public function attributeHints()
     {
-        return array_merge(parent::attributeHints(), \yii\gii\generators\model\Generator::hints());
+        return array_merge(parent::attributeHints(), (new GiiGenerator)->hints());
     }
 
 

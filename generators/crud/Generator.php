@@ -3,6 +3,7 @@
 namespace tunecino\builder\generators\crud;
 
 use Yii;
+use yii\gii\generators\crud\Generator as GiiGenerator;
 
 class Generator extends \tunecino\builder\Generator
 {
@@ -51,7 +52,7 @@ class Generator extends \tunecino\builder\Generator
 
     public function attributeHints()
     {
-        return array_merge(parent::attributeHints(), \yii\gii\generators\crud\Generator::hints());
+        return array_merge(parent::attributeHints(), (new GiiGenerator)->hints());
     }
 
 

@@ -4,7 +4,7 @@ namespace tunecino\builder\models;
 
 use Yii;
 use yii\helpers\ArrayHelper;
-
+use yii\gii\generators\model\Generator as GiiGenerator;
 
 class Entity extends \yii2tech\filedb\ActiveRecord
 {
@@ -34,7 +34,7 @@ class Entity extends \yii2tech\filedb\ActiveRecord
 
     public function validateKeyword()
     {
-        if (\yii\gii\Generator::isReservedKeyword($this->name)) {
+        if ((new GiiGenerator)->isReservedKeyword($this->name)) {
             $this->addError('name', 'Class name cannot be a reserved PHP keyword.');
         }
     }
