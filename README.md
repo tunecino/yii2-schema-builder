@@ -15,7 +15,8 @@ It basically provides two things:
  - A user interface like a workbench tool to quickly prototype application schema (entities,attributes,relations,..)
  - A flexible list of commands to be dynamically generated based on a selected schema and its predefined settings before rendering them in a terminal. Those commands will do stuff like cleaning DB, create and execute migrations, use [Gii](https://github.com/yiisoft/yii2-gii) to generate models, CRUDs, ...
 
-:bangbang: **IMPORTANT:**
+
+> :bangbang: **IMPORTANT** :bangbang: 
 
 > This extension is meant **to be used with new creations only**. If Gii UI has the decency to ask before overriding stuff, this extension won't. Its default Gii console commands are labeled by  `--interactive=0` and `--overwrite=1 ` flags. So **it will literally destroy your DATABASE plus any existing code found on its way**.
 
@@ -80,6 +81,8 @@ Once there, create your first schema *(ex: admin, v1)*, set all its related conf
 To Do Next
 -----
  
+ - Fix issue similar to https://github.com/samdark/yii2-webshell/issues/3
+ - First Release (alpha) - currently installable via ‘composer require tunecino/yii2-schema-builder "dev-master"‘
  - See what need to be done to adapt it to REST.
  - Add example on how to create a custom command list array *(Module::$commands)* returning simple commands *(either [a string or a callable function](https://github.com/tunecino/yii2-schema-builder/blob/f56d61bbcfdd94d243002e1716b9a517a3d7791a/models/Schema.php#L53))* and advanced commands involving forms to collect and store related setting inputs *(array representing a [Generator class](https://github.com/tunecino/yii2-schema-builder/blob/f56d61bbcfdd94d243002e1716b9a517a3d7791a/Module.php#L56))* .
  - Code need more care: documentation.
