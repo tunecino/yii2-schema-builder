@@ -13,6 +13,7 @@ class Module extends \yii\base\Module
     public $dataPath;
     public $commands = [];
     public $previewUrlCallback;
+    public $yiiScript = '@app/yii';
     public $allowedIPs = ['127.0.0.1', '::1'];
     public $controllerNamespace = 'tunecino\builder\controllers';
 

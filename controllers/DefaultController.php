@@ -297,7 +297,7 @@ class DefaultController extends Controller
     private function runConsole($command)
     {
         // source: https://github.com/samdark/yii2-webshell/blob/master/controllers/DefaultController.php
-        $cmd = Yii::getAlias('@app/yii') . ' ' . $command . ' 2>&1';
+        $cmd = Yii::getAlias($this->module->yiiScript) . ' ' . $command . ' 2>&1';
         $handler = popen($cmd, 'r');
         $output = '';
         while (!feof($handler)) {

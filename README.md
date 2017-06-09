@@ -12,12 +12,12 @@ How it works
 ------------
 It basically provides two things:
 
- - A user interface like a workbench tool to quickly prototype application schema (entities, attributes, relationships, ...)
+ - A user interface like a workbench tool to quickly prototype application schema (entities,attributes,relations,..)
  - A flexible list of commands to be dynamically generated based on a selected schema and its predefined settings before rendering them in a terminal. Those commands will do stuff like cleaning DB, create and execute migrations, use [Gii](https://github.com/yiisoft/yii2-gii) to generate models, CRUDs, ...
 
 :bangbang: **IMPORTANT:**
 
-> This extension is meant **to be used with new creations only**. If Gii UI has the decency to ask before overriding stuff, this extension won't. Its default Gii console commands are labeled by  `--interactive=0` and `--overwrite=1 ` flags. So **it will literally destroy your DATABASE plus any existing code found on its way **.
+> This extension is meant **to be used with new creations only**. If Gii UI has the decency to ask before overriding stuff, this extension won't. Its default Gii console commands are labeled by  `--interactive=0` and `--overwrite=1 ` flags. So **it will literally destroy your DATABASE plus any existing code found on its way**.
 
 
  Installation
@@ -52,6 +52,7 @@ if (YII_ENV_DEV) {
         'class' => 'tunecino\builder\Module',
         // uncomment the following and add IP if not connecting from localhost.
         //'allowedIPs' => ['127.0.0.1', '::1'],
+        //'yiiScript' => Yii::getAlias('@root'). '/yii', // adjust path to point to your ./yii script
     ];
     
 }

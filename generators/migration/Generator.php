@@ -59,10 +59,14 @@ class Generator extends \tunecino\builder\Generator
 
     public function getMigrationFolder()
     {
-        return $this->migrationPath . '/' . $this->schema->name;
+        $path = Yii::getAlias($this->migrationPath) ?: $this->migrationPath;
+        return (file_exists($path)) ? $this->migrationPath . '/' . $this->schema->name : null;
     }
-    
 
+
+    /**
+     * @return array
+     */
     protected function getMigrationClearCommands()
     {
         $migDownCmd = 'yii migrate/down all';
@@ -82,7 +86,9 @@ class Generator extends \tunecino\builder\Generator
         $rmvDirectoryCmd = 'yii '. Yii::$app->controller->module->id . '/default/remove-directory';
         if ($this->migrationPath) $rmvDirectoryCmd .= ' '.$this->migrationFolder;
 
-        return [$migDownCmd, $dropDbCmd, $flushDbCmd, $rmvDirectoryCmd];
+        return ($this->migrationFolder)
+            ? [$migDownCmd, $dropDbCmd, $flushDbCmd, $rmvDirectoryCmd]
+            : [$dropDbCmd, $flushDbCmd, $rmvDirectoryCmd];
     }
 
 
@@ -91,8 +97,8 @@ class Generator extends \tunecino\builder\Generator
         $dbIndexFree = $dbIndexRequired = $junction = [];
 
         foreach ($this->schema->entities as $entity) {
-            $cmd = 'yii migrate/create create_'.$entity->name.'_table'
-                     . ' --fields="'.$entity->migrationFields.'"';
+            $cmd = 'yii migrate/create create_'.$entity->name.'_table';
+            if ($entity->migrationFields) $cmd .= ' --fields="'.$entity->migrationFields.'"';
             if ($this->appconfig) $cmd .= ' --appconfig="'.$this->appconfig.'"';
             if ($this->db) $cmd .= ' --db="'.$this->db.'"';
             if ($this->migrationPath) $cmd .= ' --migrationPath="'.$this->migrationFolder.'"';

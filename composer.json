@@ -18,6 +18,7 @@
     ],
     "require": {
         "yiisoft/yii2": ">=2.0.4",
+        "yiisoft/yii2-gii": "~2.0.0",
         "yiisoft/yii2-bootstrap": "~2.0",
         "yii2tech/filedb": "^1.0",
         "bower-asset/flat-ui": "2.3.*"
