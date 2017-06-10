@@ -1,7 +1,7 @@
 Schema Builder
 ==============
-[![Packagist Version](https://img.shields.io/packagist/v/tunecino/yii2-schema-builder.svg?style=flat-square)](https://packagist.org/packages/tunecino/yii2-nested-rest)
-[![Total Downloads](https://img.shields.io/packagist/dt/tunecino/yii2-schema-builder.svg?style=flat-square)](https://packagist.org/packages/tunecino/yii2-nested-rest)
+[![Packagist Version](https://img.shields.io/packagist/v/tunecino/yii2-schema-builder.svg?style=flat-square)](https://packagist.org/packages/tunecino/yii2-schema-builder)
+[![Total Downloads](https://img.shields.io/packagist/dt/tunecino/yii2-schema-builder.svg?style=flat-square)](https://packagist.org/packages/tunecino/yii2-schema-builder)
 
 GUI built on top of Gii, migration tool, and other extensions to quickly prototype and generate working apps.
 
