@@ -78,11 +78,9 @@ Once there, create your first schema *(ex: admin, v1)*, set all its related conf
  - Code snippets from different places. Usually linked within a comment [like this one](https://github.com/tunecino/yii2-schema-builder/blob/f56d61bbcfdd94d243002e1716b9a517a3d7791a/controllers/DefaultController.php#L299) which was copied from [samdark/yii2-webshell](https://github.com/samdark/yii2-webshell) extension by @samdark.
 
 
-To Do Next
+TODO
 -----
  
- - Fix issue similar to https://github.com/samdark/yii2-webshell/issues/3
- - First Release (alpha) - currently installable via ‘composer require tunecino/yii2-schema-builder "dev-master"‘
  - See what need to be done to adapt it to REST.
  - Add example on how to create a custom command list array *(Module::$commands)* returning simple commands *(either [a string or a callable function](https://github.com/tunecino/yii2-schema-builder/blob/f56d61bbcfdd94d243002e1716b9a517a3d7791a/models/Schema.php#L53))* and advanced commands involving forms to collect and store related setting inputs *(array representing a [Generator class](https://github.com/tunecino/yii2-schema-builder/blob/f56d61bbcfdd94d243002e1716b9a517a3d7791a/Module.php#L56))* .
  - Code need more care: documentation.
