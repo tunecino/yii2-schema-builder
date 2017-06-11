@@ -14,6 +14,14 @@ class Generator extends \tunecino\builder\Generator
         'useTablePrefix' => false,
 	];
 
+	private $_toJunction = [];
+
+	private function createdJunction($rel1, $rel2)
+    {
+        return (isset($this->_toJunction[$rel2]) && $this->_toJunction[$rel2] === $rel1)
+            or (isset($this->_toJunction[$rel1]) && $this->_toJunction[$rel1] === $rel2);
+    }
+
 	public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(), [
@@ -60,7 +68,7 @@ class Generator extends \tunecino\builder\Generator
     public function getMigrationFolder()
     {
         $path = Yii::getAlias($this->migrationPath) ?: $this->migrationPath;
-        return (file_exists($path)) ? $this->migrationPath . '/' . $this->schema->name : null;
+        return $this->migrationPath . '/' . $this->schema->name;
     }
 
 
@@ -86,7 +94,7 @@ class Generator extends \tunecino\builder\Generator
         $rmvDirectoryCmd = 'yii '. Yii::$app->controller->module->id . '/default/remove-directory';
         if ($this->migrationPath) $rmvDirectoryCmd .= ' '.$this->migrationFolder;
 
-        return ($this->migrationFolder)
+        return (file_exists($this->migrationFolder))
             ? [$migDownCmd, $dropDbCmd, $flushDbCmd, $rmvDirectoryCmd]
             : [$dropDbCmd, $flushDbCmd, $rmvDirectoryCmd];
     }
@@ -111,9 +119,10 @@ class Generator extends \tunecino\builder\Generator
             else $dbIndexFree[] = $cmd;
 
             foreach ($entity->relationships as $relation) {
-                if ($relation->isManyToMany() && $relation->ownRelAttributes) {
-                    $jcmd = 'yii migrate/create create_junction_table_for_'.$entity->name.'_and_'.$relation->relatedTo->name.'_tables'
-                            . ' --fields="'.$relation->junctionFields.'"';
+                if ($relation->isManyToMany() && $this->createdJunction($entity->name, $relation->relatedTo->name) === false) {
+                    $this->_toJunction[$relation->relatedTo->name]= $entity->name;
+                    $jcmd = 'yii migrate/create create_junction_table_for_'.$entity->name.'_and_'.$relation->relatedTo->name.'_tables';
+                    if ($relation->ownRelAttributes) $jcmd .= ' --fields="'.$relation->junctionFields.'"';
                     if ($this->appconfig) $jcmd .= ' --appconfig="'.$this->appconfig.'"';
                     if ($this->db) $jcmd .= ' --db="'.$this->db.'"';
                     if ($this->migrationPath) $jcmd .= ' --migrationPath="'.$this->migrationFolder.'"';

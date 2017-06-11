@@ -188,7 +188,7 @@ class Schema extends \yii2tech\filedb\ActiveRecord
         return [
             'name' => 'The Schema name e.g., <code>blog</code>, <code>v1</code>, <code>alpha-01</code>. If this is going to be generated as a seperate Module <b>yii\helpers\Inflector::variablize()</b> will be applied to it then used to fill the <b>moduleID</b> and <b>moduleClass</b> attributes.',
             'generateAsModule' => 'This indicates whether this schema should be generated as a seperate module.</i>',
-            'moduleNamespace' => 'This is the namespace of the Module class to be generated, e.g., <code>tunecino\modules</code>. You\'ll also need to alter the <b>namecpaces</b> of the other settings like <b>models</b> and <b>controllers</b> whenever it should be generated into this Module.',
+            'moduleNamespace' => 'This is the namespace of the Module class to be generated, e.g., <code>app\modules</code>. You\'ll also need to alter the <b>namecpaces</b> of the other settings like <b>models</b> and <b>controllers</b> whenever it should be generated into this Module.',
             'enableI18N' => 'This indicates whether the generator should generate strings using <code>Yii::t()</code> method.
                 Set this to <code>true</code> if you are planning to make your application translatable.',
             'messageCategory' => 'This is the category used by <code>Yii::t()</code> in case you enable I18N.',

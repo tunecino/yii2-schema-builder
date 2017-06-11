@@ -27,7 +27,7 @@
 
   var runCommand = function($i, url, commands) {
        $console.append('<div class="cmd">$ ' + commands[$i] + '</div>');
-       $console.animate({scrollTop: $console.prop("scrollHeight")}, 800);
+       $console.animate({scrollTop: $console.prop("scrollHeight")}, 1);
 
        var baseCmd = (commands[$i].indexOf('yii') === 0 || commands[$i].indexOf('yii') === 3) 
                      ? commands[$i].replace(/^yii ?/, '') 
@@ -65,8 +65,8 @@
                }
             },
             error: function (request, status, error) {
-               throw new Error(request.responseText);
-               $generateBtn.prop('disabled', false);
+                $generateBtn.prop('disabled', false);
+                throw new Error(request.responseText);
            }
          });
        } catch(e) { 

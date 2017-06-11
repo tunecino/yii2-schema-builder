@@ -73,7 +73,7 @@ if (!$schema->generateAsModule)
               <code>
               'modules' => [
                   '<?= $moduleID ?>' => [
-                      'class' => 'tunecino\modules\<?= $moduleID ?>\Module',
+                      'class' => 'app\modules\<?= $moduleID ?>\Module',
                   ],
               ],
               </code>
