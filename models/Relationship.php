@@ -15,7 +15,7 @@ class Relationship extends \yii2tech\filedb\ActiveRecord
 
     public static function getDb()
     {
-        return Yii::$app->getModule('schema-builder')->get('filedb');
+        return \tunecino\builder\Module::getInstance()->get('filedb');
     }
 
     public function attributes()

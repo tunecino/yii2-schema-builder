@@ -3,12 +3,13 @@
 namespace tunecino\builder;
 
 use Yii;
+use yii\base\BootstrapInterface;
 use yii\helpers\FileHelper;
 use yii\base\InvalidConfigException;
 use yii\web\ForbiddenHttpException;
 
 
-class Module extends \yii\base\Module
+class Module extends \yii\base\Module implements BootstrapInterface
 {
     public $dataPath;
     public $commands = [];
@@ -42,6 +43,23 @@ class Module extends \yii\base\Module
 
         if (empty($this->commands)) $this->commands = $this->coreCommands();
         $this->prepareDataFiles();
+    }
+
+
+    public function bootstrap($app)
+    {
+        $app->getUrlManager()->addRules([
+            [
+                'class' => 'yii\web\UrlRule',
+                'route' => $this->id,
+                'pattern' => $this->id,
+            ],
+            [
+                'class' => 'yii\web\UrlRule',
+                'route' => $this->id . '/<controller>/<action>',
+                'pattern' => $this->id . '/<controller:[\w\-]+>/<action:[\w\-]+>',
+            ]
+        ], false);
     }
 
 

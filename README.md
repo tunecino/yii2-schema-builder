@@ -49,7 +49,8 @@ Once the extension is installed, add it to **both** `web.php` and `console.php` 
 
 if (YII_ENV_DEV) {
    
-    $config['modules']['schema-builder'] = [
+    $config['bootstrap'][] = 'builder';
+    $config['modules']['builder'] = [
         'class' => 'tunecino\builder\Module',
         // uncomment the following and add IP if not connecting from localhost.
         //'allowedIPs' => ['127.0.0.1', '::1'],
@@ -61,9 +62,9 @@ if (YII_ENV_DEV) {
 
 You can then access it through the following URL:
 ```
-http://localhost/path/to/index.php?r=schema-builder
+http://localhost/path/to/index.php?r=builder
 ```
-or `http://localhost/path/to/index.php/schema-builder` depending on your app routing configurations.
+or `http://localhost/path/to/index.php/builder` depending on your app routing configurations. Also note that it is not required to name the module `builder` you can use `schema-builder` or any other name you like.
 
 Once there, create your first schema *(ex: admin, v1)*, set all its related configurations at once *(inputs are organized within **different tabs**)* then click on it to see its view page and start adding entities *(ex: user, book)*. To each entity you need to add attributes and define relationships if there is any *(no need to declare any  `id` or `xxx_id`  columns as those will be auto generated)*. Once your schema is complete go back to its view page and hit that **GENERATE** button.
 
