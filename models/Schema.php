@@ -42,7 +42,7 @@ class Schema extends \yii2tech\filedb\ActiveRecord
         $generatedCMD = [];
 
         if ($this->generateAsModule) {
-            $moduleCmd = 'yii gii/module --moduleID="'. $this->moduleID .'"';
+            $moduleCmd = 'yii gii/module --moduleID="'. $this->moduleID .'" --interactive=0 --overwrite=1';
             if ($this->moduleNamespace) 
                 $moduleCmd .= ' --moduleClass="'. $this->moduleNamespace . '\\' . $this->moduleID . '\\' . 'Module"';
             $generatedCMD[] = $moduleCmd;
