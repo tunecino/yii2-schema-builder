@@ -31,23 +31,30 @@ abstract class Generator extends \yii2tech\filedb\ActiveRecord
 
     public static function getDb()
     {
-        return Yii::$app->getModule('schema-builder')->get('filedb');
+        return \tunecino\builder\Module::getInstance()->get('filedb');
     }
 
 
     public function attributes()
     {
         return array_merge(
-            array_keys($this->attributeLabels()), 
-            array_keys($this->defaultAttributes), 
-            array_keys($this->baseAttributes)
+            array_keys($this->baseAttributes),
+            array_keys($this->getCoreAttributes()), 
+            array_keys($this->defaultAttributes),
+            ['schema_id']
         );
+    }
+
+
+    public function getCoreAttributes()
+    {
+        return [];
     }
 
 
     public function loadDefaultValues()
     {
-        $defaultValues = array_merge($this->baseAttributes, $this->defaultAttributes);
+        $defaultValues = array_merge($this->baseAttributes, $this->getCoreAttributes(), $this->defaultAttributes);
         $this->setAttributes($defaultValues, false);
     }
 

@@ -7,20 +7,23 @@ use yii\gii\generators\crud\Generator as GiiGenerator;
 
 class Generator extends \tunecino\builder\Generator
 {
-    public $defaultAttributes = [
-        'viewPath' => null,
-        'baseControllerClass' => 'yii\web\Controller',
-        'indexWidgetType' => 'grid',
-        'enablePjax' => false,
-        'modelNamespace' => 'app\models',
-        'controllerNamespace' => 'app\controllers',
-        'searchModelNamespace' => null,
-    ];
+    public function getCoreAttributes()
+    {
+        return [
+            'baseViewPath' => null,
+            'baseControllerClass' => 'yii\web\Controller',
+            'indexWidgetType' => 'grid',
+            'enablePjax' => false,
+            'modelNamespace' => 'app\models',
+            'controllerNamespace' => 'app\controllers',
+            'searchModelNamespace' => null,
+        ];
+    }
 
     public function attributeLabels()
     {
         return array_merge(parent::attributeLabels(), [
-            'viewPath' => 'View Path',
+            'baseViewPath' => 'Base View Path',
             'baseControllerClass' => 'Base Controller Class',
             'indexWidgetType' => 'Widget Used in Index Page',
             'searchModelClass' => 'Search Model Class',
@@ -40,7 +43,7 @@ class Generator extends \tunecino\builder\Generator
             ['baseControllerClass', 'validateClass', 'params' => ['extends' => \yii\web\Controller::className()]],
             ['indexWidgetType', 'in', 'range' => ['grid', 'list']],
             ['enablePjax', 'boolean'],
-            ['viewPath', 'safe'],
+            ['baseViewPath', 'safe'],
             [['modelNamespace', 'controllerNamespace', 'searchModelNamespace'], 'filter', 'filter' => function($value) { return trim($value, '\\'); }],
             [['modelNamespace', 'controllerNamespace'], 'match', 'pattern' => '/^[\w\\\\]+$/', 'message' => 'Only word characters and backslashes are allowed.'],
             ['searchModelNamespace', 'match', 'skipOnEmpty' => true, 'pattern' => '/^[\w\\\\]+$/', 'message' => 'Only word characters and backslashes are allowed.'],
@@ -52,7 +55,16 @@ class Generator extends \tunecino\builder\Generator
 
     public function attributeHints()
     {
-        return array_merge(parent::attributeHints(), (new GiiGenerator)->hints());
+        return array_merge(
+            parent::attributeHints(), 
+            (new GiiGenerator)->hints(), 
+            [
+                'modelNamespace' => 'This is the namespace of the ActiveRecord class to be generated, e.g., <code>app\models</code>',
+                'controllerNamespace' => 'This is the namespace of the Controller class to be generated, e.g., <code>app\controllers</code>',
+                'searchModelNamespace' => 'This is the namespace of the Search class to be generated, e.g., <code>app\models\searches</code>',
+                'baseViewPath' => 'This is the base path to the directory for storing the view scripts for the controller, e.g., <code>/var/www/basic/controllers/views</code> , <code>@app/views</code> . ControllerID will be dynamically added added to it and if not set, it will be default to @app/views/ControllerID',
+            ]
+        );
     }
 
 
@@ -71,6 +83,11 @@ class Generator extends \tunecino\builder\Generator
         return $this->searchModelNamespace . '\\' . ucfirst($entity->name) . 'Search';
     }
 
+    protected function getbaseViewPath($entity)
+    {
+        return $this->baseViewPath . '\\' . ucfirst($entity->name);
+    }
+
 
     public function getConsoleCommands()
     {
@@ -83,7 +100,7 @@ class Generator extends \tunecino\builder\Generator
             if ($this->searchModelNamespace) $cmd .= ' --searchModelClass="'.$this->getSearchModelClass($entity).'"';
             if ($this->baseControllerClass) $cmd .= ' --baseControllerClass="'.$this->baseControllerClass.'"';
             if ($this->indexWidgetType) $cmd .= ' --indexWidgetType="'.$this->indexWidgetType.'"';
-            if ($this->viewPath) $cmd .= ' --viewPath="'.$this->viewPath.'"';
+            if ($this->baseViewPath) $cmd .= ' --viewPath="'.$this->getbaseViewPath($entity).'"';
             if ($this->enablePjax) $cmd .= ' --enablePjax=1';
             $cmd .= ' --interactive=0 --overwrite=1';
             $commands[] = $cmd;

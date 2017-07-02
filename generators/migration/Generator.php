@@ -6,20 +6,23 @@ use Yii;
 
 class Generator extends \tunecino\builder\Generator
 {
-	public $defaultAttributes = [
-		'db' => 'db',
-        'migrationTable' => '{{%migration}}',
-        'migrationPath' => '@runtime/schema-builder/migrations',
-        'templateFile' => '@yii/views/migration.php',
-        'useTablePrefix' => false,
-	];
-
 	private $_toJunction = [];
 
 	private function createdJunction($rel1, $rel2)
     {
         return (isset($this->_toJunction[$rel2]) && $this->_toJunction[$rel2] === $rel1)
             or (isset($this->_toJunction[$rel1]) && $this->_toJunction[$rel1] === $rel2);
+    }
+
+    public function getCoreAttributes()
+    {
+        return [
+            'db' => 'db',
+            'migrationTable' => '{{%migration}}',
+            'migrationPath' => '@runtime/schema-builder/migrations',
+            'templateFile' => '@yii/views/migration.php',
+            'useTablePrefix' => false,
+        ];
     }
 
 	public function attributeLabels()

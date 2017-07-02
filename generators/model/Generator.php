@@ -10,18 +10,22 @@ use yii\gii\generators\model\Generator as GiiGenerator;
 
 class Generator extends \tunecino\builder\Generator
 {
-    public $defaultAttributes = [
-        'db' => 'db',
-        'ns' => 'app\models',
-        'baseClass' => 'yii\db\ActiveRecord',
-        'generateRelations' => 'all',
-        'useSchemaName' => true,
-        'generateQuery' => false,
-        'queryNs' => 'app\models',
-        'queryClass' => null,
-        'queryBaseClass' => 'yii\db\ActiveQuery',
-        'useTablePrefix' => false,
-    ];
+    
+    public function getCoreAttributes()
+    {
+        return [
+            'db' => 'db',
+            'ns' => 'app\models',
+            'baseClass' => 'yii\db\ActiveRecord',
+            'generateRelations' => 'all',
+            'useSchemaName' => true,
+            'generateQuery' => false,
+            'queryNs' => 'app\models',
+            'queryClass' => null,
+            'queryBaseClass' => 'yii\db\ActiveQuery',
+            'useTablePrefix' => false,
+        ];
+    }
 
 
     public function attributeLabels()

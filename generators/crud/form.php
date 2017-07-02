@@ -2,7 +2,7 @@
 <?= $form->field($model, 'controllerNamespace')->textInput() ?>
 <?= $form->field($model, 'baseControllerClass')->textInput() ?>
 <?= $form->field($model, 'searchModelNamespace')->textInput() ?>
-<?= $form->field($model, 'viewPath')->textInput() ?>
+<?= $form->field($model, 'baseViewPath')->textInput() ?>
 
 <?= $form->field($model, 'indexWidgetType')->dropDownList([
     'grid' => 'GridView',
