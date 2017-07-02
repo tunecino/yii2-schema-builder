@@ -15,7 +15,9 @@ use yii\helpers\Url;
     'id' => 'generate-modal',
     'options' => ['class' => 'modal modal-fullscreen fade', 'data-backdrop' => 'static'],
     'header' =>  '<h4>Terminal</h4>',
-    'toggleButton' => ['label' => '<span class="fui-play"></span> GENERATE', 'class' => 'btn btn-inverse mt20 mb20'] ,
+    'toggleButton' => $schema->readyToGenerate() ? 
+    	['label' => '<span class="fui-play"></span> GENERATE', 'class' => 'btn btn-inverse mt20 mb20'] :
+    	['label' => '<span class="fui-play"></span> GENERATE', 'class' => 'btn btn-inverse mt20 mb20', 'disabled' => true, 'data-toggle'=> 'tooltip', 'title' => 'Either there is no created entities or there is an entity without any attribute'],
 ]); ?>
 
 <p class="jumbotron alert alert-danger text-center">
@@ -36,7 +38,8 @@ use yii\helpers\Url;
 	<button 
 		id="generateBtn"
 		type="button" 
-		class="btn btn-inverse"
+		class="btn btn-inverse" 
+		<?php if ($schema->readyToGenerate() === false) echo 'disabled="" data-toggle="tooltip" title="Either there is no created entities or there is an entity without any attribute"'; ?> 
 		data-cmd-path="<?= Url::to(['default/get-commands', 'id' => $schema->id], true) ?>"
 		data-console-path="<?= Url::to(['default/std'], true) ?>"
 	><span class="fui-play"></span> GENERATE</button>

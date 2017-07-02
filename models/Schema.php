@@ -202,6 +202,18 @@ class Schema extends \yii2tech\filedb\ActiveRecord
     {
         return $this->hasMany(Entity::className(), ['schema_id' => 'id']);
     }
+
+
+    public function readyToGenerate()
+    {
+        if (count($this->consoleCommands) === 0) return false;
+        $entities = $this->entities;
+        if (count($entities) === 0) return false;
+        foreach ($entities as $entity) {
+            if ($entity->getRelatedAttributes()->count() === 0) return false;
+        }
+        return true;
+    }
     
 
     public function beforeSave($insert)
