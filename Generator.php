@@ -41,7 +41,7 @@ abstract class Generator extends \yii2tech\filedb\ActiveRecord
             array_keys($this->baseAttributes),
             array_keys($this->getCoreAttributes()), 
             array_keys($this->defaultAttributes),
-            ['schema_id']
+            ['id','schema_id']
         );
     }
 
