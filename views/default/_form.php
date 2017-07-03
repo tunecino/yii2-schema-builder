@@ -4,18 +4,12 @@ use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\bootstrap\Modal;
 use yii\gii\generators\model\Generator;
-use yii\helpers\Inflector;
 
 /* @var $this yii\web\View */
 /* @var $schema tunecino\models\Schema */
 /* @var $form yii\widgets\ActiveForm */
 
 $schemaForms = $schema->loadForms();
-$moduleID = $schema->name ? Inflector::variablize($schema->name) : 'xyz';
-
-if (!$schema->generateAsModule) 
-    $this->registerCss("#module-configs {display: none;}");
-
 ?>
 
 <span class="schema-form">
@@ -54,35 +48,6 @@ if (!$schema->generateAsModule)
     <div role="tabpanel" class="tab-pane active" id="main">
         <?= $form->field($schema, 'id')->hiddenInput()->label(false) ?>
         <?= $form->field($schema, 'name')->textInput(['maxlength' => true])?>
-        <?= $form->field($schema, 'generateAsModule')->checkbox([
-            'onchange' => "
-                this.checked ? $('#module-configs').show() : $('#module-configs').hide();
-            "
-        ])?>
-        <div id="module-configs" class="breadcrumb">
-          <?= $form->field($schema, 'moduleNamespace')->textInput() ?>
-          <?= $form->field($schema, 'appconfig')->textInput() ?>
-          <?= $form->field($schema, 'enableI18N')->checkbox() ?>
-          <?= $form->field($schema, 'messageCategory')->textInput() ?>
-          <?= $form->field($schema, 'template')->textInput() ?>
-
-          <div class="alert alert-warning">
-            <p class="help-block"><b>Note:</b> Generating Schema as Module requires further steps. You need to manually define it under your app's config file by adding a similar code to this:</p>
-
-            <pre style="margin:15px 0 15px">
-              <code>
-              'modules' => [
-                  '<?= $moduleID ?>' => [
-                      'class' => 'app\modules\<?= $moduleID ?>\Module',
-                  ],
-              ],
-              </code>
-            </pre>
-
-            <p class="help-block">See <a target="_blank" href="http://www.yiiframework.com/doc-2.0/guide-structure-modules.html">official docs</a> for more details.</p>
-          </div>
-          
-        </div>
     </div>
     <?php foreach ($schemaForms as $fname => $fobj) { ?>
         <div role="tabpanel" class="tab-pane" id="<?= $fname ?>">

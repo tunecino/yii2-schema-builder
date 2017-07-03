@@ -88,8 +88,9 @@ class Entity extends \yii2tech\filedb\ActiveRecord
         $fn = Yii::$app->controller->module->previewUrlCallback;
         if ($fn !== null && is_callable($fn)) return call_user_func($fn, $this);
 
-        $module = $this->schema->generateAsModule ? $this->schema->moduleID . '/' : '';
-        return \yii\helpers\Url::toRoute( '/' . $module . $this->name , true);
+        $module = $this->schema->module;
+        $moduleName = ($module && $module->generateAsModule && $module->moduleID) ? $module->moduleID . '/' : '';
+        return \yii\helpers\Url::toRoute( '/' . $moduleName . $this->name , true);
     }
 
 

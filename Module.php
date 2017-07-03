@@ -74,6 +74,7 @@ class Module extends \yii\base\Module implements BootstrapInterface
     {
         return [
             ['class' => 'tunecino\builder\generators\migration\Generator'],
+            ['class' => 'tunecino\builder\generators\module\Generator'],
             ['class' => 'tunecino\builder\generators\model\Generator'],
             ['class' => 'tunecino\builder\generators\crud\Generator']
         ];

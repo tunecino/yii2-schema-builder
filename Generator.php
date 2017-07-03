@@ -95,10 +95,11 @@ abstract class Generator extends \yii2tech\filedb\ActiveRecord
     {
         return [
             [['appconfig','template'], 'filter', 'filter' => 'trim'],
-            [['appconfig'], 'validateFilePath'],
-            [['template'], 'required', 'message' => 'A code template must be selected.'],
+            ['appconfig', 'validateFilePath'],
+            ['template', 'required', 'message' => 'A code template must be selected.'],
             ['enableI18N', 'boolean'],
-            [['messageCategory'], 'validateMessageCategory', 'skipOnEmpty' => false],
+            ['template', 'string'],
+            ['messageCategory', 'validateMessageCategory', 'skipOnEmpty' => false],
         ];
     }
 
