@@ -18,7 +18,7 @@ class DefaultController extends Controller
 
     public function actionRemoveDirectory($path)
     {
-        $path = Yii::getAlias($path) ?: $path;
+        $path = Yii::getAlias($path);
     	FileHelper::removeDirectory($path);
 		echo '"' . $path .'" has been removed.'. PHP_EOL;
     }
@@ -40,5 +40,22 @@ class DefaultController extends Controller
         }
 
         echo PHP_EOL. 'database should be empty now.' . PHP_EOL;
+    }
+
+
+    public function actionAddRestRulesToFile($file, $controllers)
+    {
+        $controllers = explode(',', $controllers);
+        $file = Yii::getAlias($file);
+        if (substr($file, -4) !== '.php' || file_exists($file) === false) return 0;
+
+        $content = '<?php' . PHP_EOL . 'return [';
+        foreach ($controllers as $controller) {
+            $content .=  PHP_EOL . "   ['class' => 'yii\\rest\\UrlRule', 'controller' => '$controller']," . PHP_EOL;
+        }
+        $content .= '];';
+
+        if (file_put_contents($file, $content) === false) return 0;
+        echo '"' . $file .'" has been created.'. PHP_EOL;
     }
 }
