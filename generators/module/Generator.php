@@ -69,6 +69,17 @@ class Generator extends \tunecino\builder\Generator
         $cmd .= ' --interactive=0 --overwrite=1';
         return $this->moduleNamespace ? [$cmd] : [];
     }
+
+
+    public function afterSave($insert, $changedAttributes)
+    {
+        if (($insert && $this->generateAsModule) || isset($changedAttributes['generateAsModule'])) {
+            $schema = $this->schema;
+            $schema->isModule = $this->generateAsModule;
+            $schema->save();
+        }
+        parent::afterSave($insert, $changedAttributes);
+    }
     
 }
 

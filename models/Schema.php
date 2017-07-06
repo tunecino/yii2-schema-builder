@@ -5,6 +5,7 @@ namespace tunecino\builder\models;
 use Yii;
 use yii\db\ActiveRecord;
 use yii\base\InvalidConfigException;
+use \yii\helpers\Inflector;
 
 
 class Schema extends \yii2tech\filedb\ActiveRecord
@@ -97,6 +98,7 @@ class Schema extends \yii2tech\filedb\ActiveRecord
         return [
             'id' => 'Primary Key',
             'name' => 'Name',
+            'isModule' => 'Built as Module',
         ];
     }
 
@@ -108,6 +110,8 @@ class Schema extends \yii2tech\filedb\ActiveRecord
             ['name', 'required'],
             ['name', 'string'],
             ['name', 'unique', 'message' => 'schema "{value}" has already been created.'],
+            ['isModule', 'boolean'],
+            ['isModule', 'default', 'value' => '0'],
         ];
     }
 
@@ -137,9 +141,9 @@ class Schema extends \yii2tech\filedb\ActiveRecord
     }
 
 
-    public function getModule()
+    public function getModuleID()
     {
-        return $this->getConfigModel('tunecino\builder\generators\module\Generator');
+        return $this->isModule ? Inflector::variablize($this->name) : null;
     }
 
 
@@ -167,6 +171,6 @@ class Schema extends \yii2tech\filedb\ActiveRecord
     public function afterDelete()
     {
         Entity::deleteAll(['schema_id' => $this->id]);
-        return parent::afterDelete();
+        parent::afterDelete();
     }
 }

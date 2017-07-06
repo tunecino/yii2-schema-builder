@@ -48,6 +48,7 @@ $schemaForms = $schema->loadForms();
     <div role="tabpanel" class="tab-pane active" id="main">
         <?= $form->field($schema, 'id')->hiddenInput()->label(false) ?>
         <?= $form->field($schema, 'name')->textInput(['maxlength' => true])?>
+        <?= $form->field($schema, 'isModule')->hiddenInput()->label(false) ?>
     </div>
     <?php foreach ($schemaForms as $fname => $fobj) { ?>
         <div role="tabpanel" class="tab-pane" id="<?= $fname ?>">
