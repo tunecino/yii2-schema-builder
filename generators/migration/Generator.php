@@ -87,14 +87,14 @@ class Generator extends \tunecino\builder\Generator
         if ($this->migrationTable) $migDownCmd .= ' --migrationTable="'.$this->migrationTable.'"';
         $migDownCmd .= ' --interactive=0';
 
-        $dropDbCmd = 'yii '. Yii::$app->controller->module->id . '/default/drop-all-tables';
+        $dropDbCmd = 'yii '. Yii::$app->controller->module->id . '/helpers/drop-all-tables';
         if ($this->db) $dropDbCmd .= ' '.$this->db;
 
         $flushDbCmd = 'yii cache/flush-schema ' . $this->db;
         if ($this->appconfig) $flushDbCmd .= ' --appconfig="'.$this->appconfig.'"';
         $flushDbCmd .= ' --interactive=0';
 
-        $rmvDirectoryCmd = 'yii '. Yii::$app->controller->module->id . '/default/remove-directory';
+        $rmvDirectoryCmd = 'yii '. Yii::$app->controller->module->id . '/helpers/remove-directory';
         if ($this->migrationPath) $rmvDirectoryCmd .= ' '.$this->migrationFolder;
 
         return (file_exists($this->migrationFolder))

@@ -7,11 +7,11 @@ use yii\console\Controller;
 use yii\helpers\FileHelper;
  
 
-class DefaultController extends Controller
+class HelpersController extends Controller
 {
 
     public function beforeAction($action) {
-        echo 'Command provided by ' . Yii::$app->controller->module->id . ' extension'. PHP_EOL. PHP_EOL;
+        echo 'Helper command provided by Schema Builder extension'. PHP_EOL. PHP_EOL;
         return parent::beforeAction($action);
     }
 
