@@ -56,14 +56,14 @@ if (YII_ENV_DEV) {
     $config['modules']['builder'] = [
         'class' => 'tunecino\builder\Module',
         /**
-	     * Optional Attributes
-	     *
-	     * 'allowedIPs' => ...
-	     * 'yiiScript' => ...
-	     * 'dataPath' => ...
-	     * 'previewUrlCallback' => ...
-	     * 'commands' => ...
-	     */
+	  * Optional Attributes
+	  *
+	  * 'allowedIPs' => ...
+	  * 'yiiScript' => ...
+	  * 'dataPath' => ...
+	  * 'previewUrlCallback' => ...
+	  * 'commands' => ...
+	  */
     ]; 
 }
 ```
@@ -86,13 +86,13 @@ Optional Attributes
 
 ```php
 $commands = [
-	// a string example representing the command to be executed
-	'yii migrate/up --interactive=0',
+    // a string example representing the command to be executed
+    'yii migrate/up --interactive=0',
 
-	// a callable example returning a command or a list of commands to be executed
-	function($schema) {
-		// implement your logic here then
-		// return either a string or an array of strings
+    // a callable example returning a command or a list of commands to be executed
+    function($schema) {
+	// implement your logic here then
+	// return either a string or an array of strings
     }
 
     // a custom generator (where you can also set default form values)
