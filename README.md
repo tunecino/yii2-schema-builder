@@ -84,7 +84,7 @@ Optional Attributes
 
 **dataPath:** Path to store GUI related data and settings. default to `'runtime/schema-builder/data'`.
 
-**previewUrlCallback:** If the preview link doesn't correctly point to your resources, this is where you declare your own function to generate the correct link. see default implementation [here](https://github.com/tunecino/yii2-schema-builder/blob/0312e8d69108dc3d3a14b1137205b589c9089f2b/models/Entity.php#L86-L94).
+**previewUrlCallback:** If the preview link doesn't correctly point to your resources, this is where you declare your own function to generate the correct link. see default implementation [here](https://github.com/tunecino/yii2-schema-builder/blob/65156f6ad057779d4a5f060ae9efa84892ed14fa/models/Entity.php#L86-L94).
 
 **commands:** This is the array holding the list of commands to be dynamically generated. A command can be represented within a simple *string*, a *callable function* or a *generator*:
 
