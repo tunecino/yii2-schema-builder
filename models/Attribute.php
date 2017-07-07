@@ -29,6 +29,7 @@ class Attribute extends \yii2tech\filedb\ActiveRecord
 			['type', 'in', 'range' => array_keys($this->types)],
 			[['required', 'unique'], 'boolean'],
 			[['entity_id', 'name', 'type', 'default'], 'string'],
+			['name', 'compare', 'compareValue' => 'id', 'operator' => '!=', 'message' => 'Primary key will be added automatically. No need to create it.'],
 			['name', 'unique', 'targetAttribute' => ['name', 'entity_id'], 'comboNotUnique' => 'Attribute "{value}" has already been defined.'],
 			['entity_id', 'exist', 'skipOnError' => true, 'targetClass' => Entity::className(), 'targetAttribute' => ['entity_id' => 'id'], 'on' => self::SCENARIO_DEFAULT],
 			['entity_id', 'exist', 'skipOnError' => true, 'targetClass' => Relationship::className(), 'targetAttribute' => ['entity_id' => 'id'], 'on' => self::SCENARIO_JUNCTION],
