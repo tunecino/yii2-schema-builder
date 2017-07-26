@@ -85,7 +85,7 @@ class Generator extends \tunecino\builder\Generator
 
     protected function getbaseViewPath($entity)
     {
-        return $this->baseViewPath . '\\' . ucfirst($entity->name);
+        return $this->baseViewPath . '\\' . $entity->name;
     }
 
 

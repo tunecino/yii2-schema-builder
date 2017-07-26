@@ -22,8 +22,9 @@ class Entity extends \yii2tech\filedb\ActiveRecord
     public function rules()
     {
         return [
-            [['name', 'schema_id'], 'filter', 'filter' => 'trim'],
             [['name'], 'required'],
+            [['name'], 'filter', 'filter' => 'strtolower'],
+            [['name', 'schema_id'], 'filter', 'filter' => 'trim'],
             [['name'], 'match', 'pattern' => '/^\w+$/', 'message' => 'Only word characters are allowed.'],
             [['name'], 'validateKeyword', 'skipOnEmpty' => false],
             ['schema_id', 'string'],
